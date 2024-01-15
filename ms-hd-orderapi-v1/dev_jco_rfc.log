@@ -1,0 +1,706 @@
+
+**** Log file opened at 20230317 135930 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Fri Mar 17 13:59:30,662<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1_DEV ASHOST=narlnedaci.whirlpool.com SYSNR=01 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlnedaci.whirlpool.com' unknown
+TIME        Fri Mar 17 13:59:30 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlnedaci.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230323 135326 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu Mar 23 13:53:26,328<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1_DEV ASHOST=narlnedaci.whirlpool.com SYSNR=01 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlnedaci.whirlpool.com' unknown
+TIME        Thu Mar 23 13:53:26 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlnedaci.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230324 181051 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Fri Mar 24 18:10:51,431<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1_DEV ASHOST=narlnedaci.whirlpool.com SYSNR=01 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlnedaci.whirlpool.com' unknown
+TIME        Fri Mar 24 18:10:51 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlnedaci.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230328 120336 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Info:     >Tue Mar 28 12:03:36,810<    [JCoAPI] Exception while adding ConnectionManager shutdown hook: java.lang.IllegalStateException: Shutdown in progress
+	at java.base/java.lang.ApplicationShutdownHooks.add(ApplicationShutdownHooks.java:66)
+	at java.base/java.lang.Runtime.addShutdownHook(Runtime.java:216)
+	at com.sap.conn.jco.rt.ConnectionManager.<init>(ConnectionManager.java:78)
+	at com.sap.conn.jco.rt.DefaultConnectionManager.<init>(DefaultConnectionManager.java:13)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at java.base/java.lang.Class.newInstance(Class.java:584)
+	at com.sap.conn.jco.rt.JCoRuntime.createConnectionManager(JCoRuntime.java:1352)
+	at com.sap.conn.jco.rt.DefaultJCoRuntime.initialize(DefaultJCoRuntime.java:84)
+	at com.sap.conn.jco.rt.JCoRuntimeFactory.<clinit>(JCoRuntimeFactory.java:23)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:315)
+	at com.sap.conn.jco.JCo.createJCo(JCo.java:42)
+	at com.sap.conn.jco.JCo.<clinit>(JCo.java:33)
+	at com.sap.conn.jco.JCoDestinationManager.getDestination(JCoDestinationManager.java:56)
+	at com.whirlpool.order.service.OrderOnlineService.callOrderFunction(OrderOnlineService.java:165)
+	at com.whirlpool.order.controller.HDOrderController.orderEntry(HDOrderController.java:241)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:670)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+
+
+**** Log file opened at 20230330 122931 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu Mar 30 12:29:31,370<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1_DEV ASHOST=narlnedaci.whirlpool.com SYSNR=01 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlnedaci.whirlpool.com' unknown
+TIME        Thu Mar 30 12:29:31 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlnedaci.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230330 190652 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu Mar 30 19:06:52,561<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1_DEV ASHOST=narlnedaci.whirlpool.com SYSNR=01 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlnedaci.whirlpool.com' unknown
+TIME        Thu Mar 30 19:06:52 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlnedaci.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230330 190819 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu Mar 30 19:08:19,803<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1_DEV ASHOST=narlnedaci.whirlpool.com SYSNR=01 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlnedaci.whirlpool.com' unknown
+TIME        Thu Mar 30 19:08:19 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlnedaci.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230330 203011 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu Mar 30 20:30:11,461<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1_DEV ASHOST=narlnedaci.whirlpool.com SYSNR=01 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlnedaci.whirlpool.com' unknown
+TIME        Thu Mar 30 20:30:11 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlnedaci.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230331 000125 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Fri Mar 31 00:01:25,017<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Fri Mar 31 00:01:25 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230331 000241 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Fri Mar 31 00:02:41,431<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Fri Mar 31 00:02:41 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230411 163850 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Tue Apr 11 16:38:50,802<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Tue Apr 11 16:38:50 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230518 125633 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu May 18 12:56:33,849<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:56:33 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 12:56:33,881<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:56:33 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     5
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 12:56:33,896<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:56:33 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     7
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 12:56:33,910<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:56:33 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     9
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 12:56:33,928<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:56:33 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     11
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 12:56:33,957<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:56:33 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     13
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230518 125849 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu May 18 12:58:49,068<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:58:49 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 12:58:49,097<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:58:49 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     5
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 12:58:49,133<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 12:58:49 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     7
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230518 130058 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu May 18 13:00:58,068<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:00:58 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 13:00:58,097<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:00:58 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     5
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 13:00:58,140<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:00:58 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     7
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230518 130230 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu May 18 13:02:30,241<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:02:30 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 13:02:30,321<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:02:30 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     5
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230518 130322 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu May 18 13:03:22,628<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:03:22 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 13:03:22,701<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:03:22 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     5
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230518 130823 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu May 18 13:08:23,414<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:08:23 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu May 18 13:08:23,458<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:08:23 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/nixxhl.cpp
+LINE        198
+DETAIL      NiHLGetNodeAddr: hostname cached as unknown
+COUNTER     5
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 20230518 134233 India Standard Time Rel. 3.1.5 (2021-11-11) [753.1110]
+Error:     >Thu May 18 13:42:33,350<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: TYPE=A DESTINATION=ABAP_AS1 ASHOST=narlneqa01.whirlpool.com SYSNR=00 PCS=1 SERIALIZATION_FORMAT=columnBased NETWORK=LAN
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       hostname 'narlneqa01.whirlpool.com' unknown
+TIME        Thu May 18 13:42:33 2023
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -2
+MODULE      /bas/753_COR/src/base/ni/niuxi.c
+LINE        1771
+DETAIL      NiPGetHostByName: 'narlneqa01.whirlpool.com' not found
+SYSTEM CALL getaddrinfo
+COUNTER     3
+
+	return code: RFC_FAILURE (1)
+	error group: 102
+	key: RFC_ERROR_COMMUNICATION
+

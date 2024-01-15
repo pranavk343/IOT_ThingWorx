@@ -1,0 +1,223 @@
+image: maven:3-jdk-11
+
+options:
+  docker: true
+
+definitions:
+  steps:
+    - step: &build-step
+        name: SonarQube analysis
+        image: maven:3.8.3-openjdk-17
+        caches:
+          - maven
+          - sonar
+        script:
+          - mvn clean install sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_API_TOKEN -Dsonar.qualitygate.wait=true
+
+    - step: &build-and-test
+        name: Maven Build and Test
+        image: maven:3.8.3-openjdk-17
+        max-time: 21
+        caches:
+          - maven
+        script:
+          - mvn clean install
+          - mvn -B verify --file pom.xml
+        artifacts:
+          - target/order-1.1.1-SNAPSHOT.jar
+    
+    - step: &Veracode-Static-Pipeline-scanner
+        name: Veracode SAST scan
+        script:
+          - curl -sSO https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.3.11.1/vosp-api-wrappers-java-23.3.11.1.jar
+          - java -jar vosp-api-wrappers-java-23.3.11.1.jar -action uploadandscan -vid $VERACODE_API_ID -vkey $VERACODE_API_KEY -appname "NAR GIT Apigee - HD-osm-orderapi-v1" -createprofile true -criticality VeryHigh -scantimeout 31 -scanpollinginterval 31 -version ${BITBUCKET_COMMIT::7} -filepath target/order-1.1.1-SNAPSHOT.jar
+          
+    - step: &Build-and-Push-Docker-dev-Image
+        name: Build and Push Docker Image
+        image: google/cloud-sdk:latest
+        script:
+          - echo $GCLOUD_API_KEYFILE > ~/.gcloud-api-key.json
+          - gcloud auth activate-service-account --key-file ~/.gcloud-api-key.json
+          - export DOCKER_BUILDKIT=0
+          - docker login -u _json_key --password-stdin https://$DOCKER_GCR_REPO_URL < ~/.gcloud-api-key.json
+          - docker build -t $DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} --build-arg config_path=src/main/resources/application-dev.properties .
+          - docker tag $DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} $DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - docker push $DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - docker save --output tmp-image.docker $DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+        artifacts:
+          - tmp-image.docker
+    
+    - step: &Build-and-Push-Docker-qa-Image
+        name: Build and Push Docker Image
+        image: google/cloud-sdk:latest
+        script:
+          - echo $GCLOUD_API_KEYFILE > ~/.gcloud-api-key.json
+          - gcloud auth activate-service-account --key-file ~/.gcloud-api-key.json
+          - export DOCKER_BUILDKIT=0
+          - docker login -u _json_key --password-stdin https://$DOCKER_GCR_REPO_URL < ~/.gcloud-api-key.json
+          - docker build -t $DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} --build-arg config_path=src/main/resources/application-qa.properties .
+          - docker tag $DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} $DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - docker push $DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - docker save --output tmp-image.docker $DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+        artifacts:
+          - tmp-image.docker
+    
+    - step: &prod-Build-and-Push-Docker-Image
+        name: Prod Build and Push Docker Image
+        image: google/cloud-sdk:latest
+        script:
+          - echo $PROD_GCLOUD_API_KEYFILE > ~/.gcloud-api-key.json
+          - gcloud auth activate-service-account --key-file ~/.gcloud-api-key.json
+          - export DOCKER_BUILDKIT=0
+          - docker login -u _json_key --password-stdin https://$PROD_DOCKER_GCR_REPO_URL < ~/.gcloud-api-key.json
+          - docker build -t $PROD_DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} --build-arg config_path=src/main/resources/application-prod.properties .
+          - docker tag $PROD_DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} $PROD_DOCKER_GCR_REPO_URL/$PROD_GCLOUD_PROJECT_ID/$PROD_DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - docker push $PROD_DOCKER_GCR_REPO_URL/$PROD_GCLOUD_PROJECT_ID/$PROD_DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - docker save --output tmp-image.docker $PROD_DOCKER_GCR_REPO_URL/$PROD_GCLOUD_PROJECT_ID/$PROD_DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+        artifacts:
+          - tmp-image.docker
+    
+    - step: &wiz-scan-dev
+        name: Wiz Scan Docker Image of Dev Env
+        image: google/cloud-sdk:latest
+        script:
+          - curl --silent -o wizcli https://wizcli.app.wiz.io/latest/wizcli && chmod +x wizcli
+          - ./wizcli auth --id "$DEV_WIZ_CLIENT_ID" --secret "$DEV_WIZ_CLIENT_SECRET"
+          - docker load --input ./tmp-image.docker
+          - DOCKER_IMAGE=$DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - ./wizcli docker scan --image $DOCKER_IMAGE --policy Integration-vuln-policy --detailed  > wiz-scan-results.json
+        artifacts:
+          name: wiz-scan-results.json
+          paths:
+            - wiz-scan-results.json
+          when: always
+    
+    - step: &wiz-scan-qa
+        name: Wiz Scan Docker Image of Qa Env
+        image: google/cloud-sdk:latest
+        script:
+          - curl --silent -o wizcli https://wizcli.app.wiz.io/latest/wizcli && chmod +x wizcli
+          - ./wizcli auth --id "$QA_WIZ_CLIENT_ID" --secret "$QA_WIZ_CLIENT_SECRET"
+          - docker load --input ./tmp-image.docker
+          - DOCKER_IMAGE=$DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - ./wizcli docker scan --image $DOCKER_IMAGE --policy Integration-vuln-policy --detailed  > wiz-scan-results.json
+        artifacts:
+          name: wiz-scan-results.json
+          paths:
+            - wiz-scan-results.json
+          when: always
+    
+    - step: &wiz-scan-prod
+        name: Wiz Scan Docker Image of Prod Env
+        image: google/cloud-sdk:latest
+        script:
+          - curl --silent -o wizcli https://wizcli.app.wiz.io/latest/wizcli && chmod +x wizcli
+          - ./wizcli auth --id "$PROD_WIZ_CLIENT_ID" --secret "$PROD_WIZ_CLIENT_SECRET"
+          - docker load --input ./tmp-image.docker
+          - DOCKER_IMAGE=$PROD_DOCKER_GCR_REPO_URL/$PROD_GCLOUD_PROJECT_ID/$PROD_DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7}
+          - ./wizcli docker scan --image $DOCKER_IMAGE --policy Integration-vuln-policy --detailed  > wiz-scan-results.json
+        artifacts:
+          name: wiz-scan-results.json
+          paths:
+            - wiz-scan-results.json
+          when: always
+    
+    - step: &Image-Tag-updation-in-Dev-Env
+        name: Update Docker Image Tag in Dev Env
+        script:
+          - echo "Clone the repository....."
+          - TEMP_FOLDER="$(mktemp -d)" 
+          - wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq
+          - yq -V
+          - git branch -a
+          - git checkout rancher-dev
+          - ls -a
+          - VAR=$DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} yq -i '.spec.template.spec.containers[0].image=strenv(VAR)' deployment.yml
+          - git config user.email "$BB_EMAIL"
+          - git config user.name "$BB_USER"
+          - git add . 
+          - git commit -m "refactor - updated Image Tag in dev environment with container image - ${BITBUCKET_COMMIT::7}"
+          - git push -u origin rancher-dev
+        artifacts:
+          download: false
+
+    - step: &Image-Tag-updation-in-Qa-Env
+        name: Update Docker Image Tag in Qa Env
+        script:
+          - echo "Clone the repository..."
+          - TEMP_FOLDER="$(mktemp -d)" 
+          - wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq
+          - yq -V
+          - git branch -a
+          - git checkout rancher-qa
+          - ls -a
+          - VAR=$DOCKER_GCR_REPO_URL/$GCLOUD_PROJECT_ID/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} yq -i '.spec.template.spec.containers[0].image=strenv(VAR)' deployment.yml
+          - git config user.email "$BB_EMAIL"
+          - git config user.name "$BB_USER"
+          - git add . 
+          - git commit -m "refactor - updated Image Tag in dev environment with container image - ${BITBUCKET_COMMIT::7}"
+          - git push -u origin rancher-qa
+        artifacts:
+          download: false
+    
+    - step: &Image-Tag-updation-in-Prod-Env
+        name: Update Docker Image Tag in Prod Env
+        script:
+          - echo "Clone the repository..."
+          - TEMP_FOLDER="$(mktemp -d)" 
+          - wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq
+          - yq -V
+          - git branch -a
+          - git checkout rancher-prod
+          - ls -a
+          - VAR=$PROD_DOCKER_GCR_REPO_URL/$PROD_GCLOUD_PROJECT_ID/$PROD_DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT::7} yq -i '.spec.template.spec.containers[0].image=strenv(VAR)' deployment.yml
+          - git config user.email "$BB_EMAIL"
+          - git config user.name "$BB_USER"
+          - git add . 
+          - git commit -m "refactor - updated Image Tag in dev environment with container image - ${BITBUCKET_COMMIT::7}"
+          - git push -u origin rancher-prod
+        artifacts:
+          download: false
+  
+  caches:
+    sonar: ~/.sonar
+  
+  services:
+    docker:
+      memory: 1024
+
+clone:
+  depth: full
+
+
+pipelines:
+  
+  pull-requests:
+    '**': #this runs as default for any branch not elsewhere defined.....
+      - step: *build-step
+  
+  branches:
+    dev:
+      - step: *build-step
+      - step: *build-and-test
+      - step: *Veracode-Static-Pipeline-scanner
+      - step: *Build-and-Push-Docker-dev-Image
+      - step: *wiz-scan-dev
+      - step: *Image-Tag-updation-in-Dev-Env
+      
+  
+    release:
+      #- step: *build-step
+      - step: *build-and-test
+      #- step: *Veracode-Static-Pipeline-scanner
+      - step: *Build-and-Push-Docker-qa-Image
+      #- step: *wiz-scan-qa
+      - step: *Image-Tag-updation-in-Qa-Env
+      
+    master:
+      #- step: *build-step
+      - step: *build-and-test
+      #- step: *Veracode-Static-Pipeline-scanner
+      - step: *prod-Build-and-Push-Docker-Image
+      #- step: *wiz-scan-prod
+      - step: *Image-Tag-updation-in-Prod-Env

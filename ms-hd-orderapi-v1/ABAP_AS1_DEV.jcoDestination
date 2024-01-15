@@ -1,0 +1,18 @@
+jco.client.client=510
+jco.client.lang=EN
+jco.client.ashost=narlnedaci.whirlpool.com
+jco.client.r3name=NED
+jco.client.sysnr=01
+jco.client.user=NED510K8GIP
+jco.client.passwd=vx7xlo=;zHUEb^tyl%=SFo}~#_;D)!_lR(zAvDBWa-$8#`_;
+
+#further useful standard properties (see documentation in DestinationDataProvider)
+#those are independent from the connection type
+jco.destination.repository_roundtrip_optimization=1
+jco.client.serialization_format=columnBased
+jco.client.network=lan
+jco.destination.pool_capacity=80
+jco.destination.expiration_time=600000
+jco.destination.expiration_check_period=120000
+
+
